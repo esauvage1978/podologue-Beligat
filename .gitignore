@@ -1,0 +1,19 @@
+# WAMP / Windows
+Thumbs.db
+Desktop.ini
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# PHP
+vendor/
+composer.phar
+.env
+.env.local
+*.log
+
+# OS
+.DS_Store
