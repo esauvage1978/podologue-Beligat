@@ -1,0 +1,43 @@
+---
+import { siteConfig, formatStructureAddress } from '../config/site';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+	<div class="container site-footer__grid">
+		<div>
+			<p class="site-footer__brand">{siteConfig.brandName}</p>
+			<p class="site-footer__sub">Pédicures-podologues à Armentières — semelles sur mesure, bilan podologique.</p>
+			<p class="site-footer__sub" style="margin-top:0.75rem">{formatStructureAddress()}</p>
+		</div>
+		<div>
+			<h3>Navigation</h3>
+			<ul>
+				<li><a href="/">Accueil</a></li>
+				<li><a href="/qui-suis-je/">Qui sommes-nous</a></li>
+				<li><a href="/mes-services/">Mes services</a></li>
+				<li><a href="/plan-acces/">Plan d’accès</a></li>
+			</ul>
+		</div>
+		<div>
+			<h3>Rendez-vous</h3>
+			<ul>
+				<li>
+					<a href={siteConfig.doctolibUrl} target="_blank" rel="noopener noreferrer">Doctolib — prise de RDV</a>
+				</li>
+				<li>
+					<a href={siteConfig.leMedecinUrl} target="_blank" rel="noopener noreferrer">Fiche annuaire santé</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="container site-footer__legal">
+		<nav aria-label="Mentions légales">
+			<a href="/mentions-legales/">Mentions légales</a>
+			<a href="/politique-confidentialite/">Politique de confidentialité</a>
+			<a href="/gestion-cookies/">Cookies</a>
+		</nav>
+		<p style="margin:0.75rem 0 0">© {year} — {siteConfig.siteName}. Information professionnelle — ne remplace pas un avis médical.</p>
+	</div>
+</footer>

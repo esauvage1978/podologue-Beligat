@@ -1,0 +1,131 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { siteConfig, formatStructureAddress, formatStreetLine } from '../../config/site';
+import { media } from '../../config/media';
+
+const title = 'Plan d’accès — Pôle Santé Armentières, transports & visites à domicile';
+const description =
+	'Venir au cabinet Beligat au 1 rue de Strasbourg à Armentières : bus, parking, ascenseur et accès PMR. Carte indicative des visites à domicile.';
+const { lat, lng, homeVisitRadiusM } = siteConfig.geo;
+---
+
+<SiteLayout {title} {description} canonicalPath="/plan-acces/">
+	<link slot="head" rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+
+	<section class="hero-mesh" style="padding:clamp(2.5rem,6vw,4rem) 0">
+		<div class="container">
+			<h1 class="display" style="margin:0 0 0.75rem">Plan d’accès</h1>
+			<p class="lead" style="max-width:40rem">
+				<strong>{siteConfig.structure.name}</strong> — {formatStreetLine()}. Cabinet au <strong>2<sup>e</sup> étage</strong>,
+				avec <strong>ascenseur</strong> et <strong>accès PMR</strong>.
+			</p>
+			<div class="btn-group" style="margin-top:1.5rem">
+				<a class="btn btn--primary" href={siteConfig.doctolibUrl} target="_blank" rel="noopener noreferrer">
+					Rendez-vous en ligne
+				</a>
+				<a
+					class="btn btn--light"
+					href={`https://www.openstreetmap.org/directions?from=&to=${lat}%2C${lng}`}
+					target="_blank"
+					rel="noopener noreferrer">Itinéraire OSM</a
+				>
+			</div>
+		</div>
+	</section>
+
+	<section class="section section--white prose-page">
+		<div class="container">
+			<h2 style="margin-top:0">Carte du cabinet & zone indicative «&nbsp;à domicile&nbsp;»</h2>
+			<p class="muted">
+				Le <strong>cercle</strong> représente une <strong>zone d’intervention indicative</strong> pour les visites à
+				domicile : il est fourni à titre pratique — la faisabilité dépend du planning, des contraintes de déplacement et
+				de l’évaluation clinique. Merci de <strong>joindre le cabinet par téléphone</strong> pour toute demande de
+				passage à domicile.
+			</p>
+
+			<div
+				id="map-cabinet"
+				class="map-wrap"
+				data-lat={String(lat)}
+				data-lng={String(lng)}
+				data-radius={String(homeVisitRadiusM)}
+				role="region"
+				aria-label="Carte du cabinet et zone indicative des visites à domicile"
+			>
+			</div>
+			<div class="map-legend">
+				<span><span class="dot dot--cabinet" aria-hidden="true"></span> Cabinet (Pôle Santé)</span>
+				<span><span class="dot dot--zone" aria-hidden="true"></span> Zone indicative domicile (~{Math.round(homeVisitRadiusM / 1000)}&nbsp;km)</span>
+			</div>
+
+			<h2>Transports en commun</h2>
+			<p>Arrêts fréquemment cités à proximité (sources annuaires santé)&nbsp;:</p>
+			<ul>
+				<li>Bus — Rue de Lille (lignes 79, 80, 82, CITA selon période)</li>
+				<li>Bus — Armentières Gare / gare d’Armentières</li>
+				<li>Bus — Sécurité sociale, Faidherbe, République, Place Thiers, CH Armentières…</li>
+			</ul>
+
+			<h2>Parking</h2>
+			<p class="muted">
+				Parking public par exemple rue Nicolas Leblanc (mentionné sur les fiches publiques) — places selon disponibilité
+				communale.
+			</p>
+
+			<h2>Le cabinet</h2>
+			<p class="muted">Quelques vues du lieu de consultation au Pôle Santé d’Armentières.</p>
+			<div class="photo-grid">
+				{
+					media.cabinet.map((item) => (
+						<figure>
+							<a href={item.src} target="_blank" rel="noopener noreferrer">
+								<img src={item.src} alt={item.alt} width="400" height="400" loading="lazy" decoding="async" />
+							</a>
+							<figcaption>{item.alt}</figcaption>
+						</figure>
+					))
+				}
+			</div>
+
+			<h2 id="contact">Contact</h2>
+			<p>
+				<strong>Adresse</strong> — {formatStructureAddress()}
+			</p>
+			<p>
+				<strong>Courriel</strong> — <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
+				<span class="muted">(à actualiser dans le fichier de configuration du site)</span>
+			</p>
+			<p>
+				<strong>Rendez-vous</strong> — réservation en ligne sur
+				<a href={siteConfig.doctolibUrl} target="_blank" rel="noopener noreferrer">Doctolib</a>.
+			</p>
+			<p class="muted">
+				Urgence vitale&nbsp;: <strong>15</strong> ou <strong>112</strong>.
+			</p>
+		</div>
+	</section>
+
+	<script is:inline src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+	<script is:inline>
+		document.addEventListener('DOMContentLoaded', () => {
+			const el = document.getElementById('map-cabinet');
+			if (!el || typeof window.L === 'undefined') return;
+			const lat = parseFloat(el.dataset.lat);
+			const lng = parseFloat(el.dataset.lng);
+			const radius = parseFloat(el.dataset.radius);
+			const map = window.L.map(el, { scrollWheelZoom: false }).setView([lat, lng], 11);
+			window.L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+				attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+				maxZoom: 19,
+			}).addTo(map);
+			window.L.marker([lat, lng]).addTo(map).bindPopup('Cabinet — Pôle Santé Armentières');
+			window.L.circle([lat, lng], {
+				radius: radius,
+				color: '#2E5262',
+				fillColor: '#2E5262',
+				fillOpacity: 0.12,
+				weight: 2,
+			}).addTo(map);
+		});
+	</script>
+</SiteLayout>

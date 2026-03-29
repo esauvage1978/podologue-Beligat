@@ -1,0 +1,100 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { siteConfig } from '../../config/site';
+
+const title = 'Soins & bilans — semelles orthopédiques, podologie du sport, pédicurie';
+const description =
+	'Actes de pédicurie-podologie à Armentières : bilan podologique et postural, semelles orthopédiques sur mesure, orthèses plantaires, podologie du sport, orthonyxie, K-tape, pédicurie. Tarifs indicatifs.';
+---
+
+<SiteLayout {title} {description} canonicalPath="/mes-services/">
+	<section class="hero-mesh" style="padding:clamp(2.5rem,6vw,4rem) 0">
+		<div class="container">
+			<h1 class="display" style="margin:0 0 0.75rem">Mes services</h1>
+			<p class="lead" style="max-width:42rem">
+				Une offre de soins centrée sur le <strong>bilan</strong>, la <strong>prévention</strong> et les
+				<strong>orthèses plantaires</strong> lorsqu’elles sont pertinentes — sans incitation au sur-traitement : chaque
+				parcours est discuté avec vous.
+			</p>
+			<div class="btn-group" style="margin-top:1.5rem">
+				<a class="btn btn--primary" href={siteConfig.doctolibUrl} target="_blank" rel="noopener noreferrer">
+					Réserver sur Doctolib
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<section class="section section--white prose-page" id="semelles">
+		<div class="container">
+			<h2 style="margin-top:0">Semelles & orthèses plantaires</h2>
+			<p>
+				Les <strong>semelles orthopédiques sur mesure</strong> corrigent ou soulagent des déséquilibres d’appui,
+				stabilisent la cheville ou déchargent une zone douloureuse. Elles s’inscrivent souvent après un
+				<strong>bilan podologique</strong> et/ou <strong>bilan postural</strong>, parfois sur prescription médicale
+				selon les cas.
+			</p>
+			<p>
+				Nous précisons le <strong>délai de fabrication</strong>, le type de chaussage compatible et le
+				<strong>plan de contrôle</strong> (un premier rendez-vous de contrôle est habituellement prévu dans les mois
+				suivant la livraison, selon le protocole du cabinet).
+			</p>
+			<div
+				style="background:linear-gradient(135deg,rgba(46,82,98,0.08),rgba(204,130,51,0.12));border-radius:var(--radius-lg);padding:1.5rem;margin:1.5rem 0;border:1px solid rgba(46,82,98,0.12)"
+			>
+				<p style="margin:0;font-weight:700;color:var(--color-primary-dark)">Tarifs indicatifs (annuaires publics)</p>
+				<p class="muted" style="margin:0.5rem 0 0;font-size:0.95rem">
+					Les montants communiqués sur Doctolib ou lemedecin.fr sont <strong>indicatifs</strong> : ils peuvent varier
+					selon les actes réalisés, la complexité du bilan et les ajustements nécessaires. Tout dépassement doit être
+					<strong>expliqué au préalable</strong>.
+				</p>
+				<ul style="margin:0.75rem 0 0">
+					<li>Bilan podologique — bilan postural (ordre de grandeur courant sur annuaires&nbsp;: autour de 50–60&nbsp;€)</li>
+					<li>Bilan + semelles orthopédiques (premier contrôle inclus dans le protocole annoncé&nbsp;: fourchettes types 120–170&nbsp;€ ou 125–145&nbsp;€ selon sources)</li>
+					<li>Soin de pédicurie (ex.&nbsp;33–35&nbsp;€ selon fiches publiques)</li>
+				</ul>
+			</div>
+
+			<h2>Bilans & prévention</h2>
+			<ul>
+				<li><strong>Bilan podologique</strong> — analyse de la marche, des appuis et de la statique du pied.</li>
+				<li><strong>Bilan postural</strong> — lien entre posture globale et sollicitations du membre inférieur.</li>
+				<li><strong>Bilan sportif</strong> — adapté aux contraintes de la discipline (running, sports collectifs, etc.).</li>
+				<li><strong>Podologie pédiatrique</strong> — suivi de l’enfant selon les indications.</li>
+			</ul>
+
+			<h2>Soins de pédicurie</h2>
+			<p>
+				Soins des épaississements de peau (cors, durillons), <strong>ongle incarné</strong>, affections unguéales ou
+				cutanées dans le cadre légal de la profession — avec matériel stérile ou à usage adapté et hygiène renforcée.
+			</p>
+
+			<h2>Techniques complémentaires (selon indication)</h2>
+			<ul>
+				<li><strong>Orthonyxie</strong> — correction mécanique des ongles.</li>
+				<li><strong>K-tape</strong> — bandage proprioceptif dans des indications précises.</li>
+				<li><strong>Thérapie manuelle</strong> pied et cheville.</li>
+				<li><strong>Traitement des verrues plantaires</strong> — protocole encadré (nombre d’applications limité).</li>
+			</ul>
+
+			<h2>Visites à domicile</h2>
+			<p>
+				Conformément aux informations portées à la connaissance du public sur les plateformes de rendez-vous, les
+				<strong>visites à domicile</strong> s’organisent <strong>uniquement par téléphone</strong>, hors réservation
+				en ligne. La zone couverte est présentée à titre <strong>indicatif</strong> sur la page
+				<a href="/plan-acces/">Plan d’accès</a> (carte).
+			</p>
+
+			<h2>Moyens de paiement</h2>
+			<p class="muted">
+				Chèque, espèces, carte bancaire et virement — selon les modalités affichées en cabinet et sur les annuaires.
+			</p>
+
+			<p style="margin-top:2rem">
+				<a class="btn btn--primary" href={siteConfig.doctolibUrl} target="_blank" rel="noopener noreferrer">
+					Choisir un créneau
+				</a>
+				<a class="btn btn--outline" href="/plan-acces/">Accès au cabinet</a>
+			</p>
+		</div>
+	</section>
+</SiteLayout>

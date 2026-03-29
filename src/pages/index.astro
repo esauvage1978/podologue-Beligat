@@ -1,0 +1,232 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import BookLinks from '../components/BookLinks.astro';
+import JulienPortrait from '../components/JulienPortrait.astro';
+import { siteConfig, formatStreetLine } from '../config/site';
+import { media } from '../config/media';
+
+const [cabHero, cabSemelles] = [media.cabinet[0], media.cabinet[1]];
+
+const title = 'Pédicure-podologue à Armentières — semelles orthopédiques & bilan podologique';
+const description =
+	'Cabinet Beligat au Pôle Santé d’Armentières : deux pédicures-podologues, semelles orthopédiques sur mesure, bilan podologique et postural, podologie du sport, pédicurie. Prenez rendez-vous en ligne.';
+---
+
+<SiteLayout {title} {description} canonicalPath="/">
+	<section class="hero-mesh" aria-labelledby="hero-title">
+		<div class="container">
+			<div>
+				<h1 id="hero-title" class="display">
+					Vos pieds méritent un <em style="color:var(--color-accent);font-style:normal">vrai</em> bilan — et des
+					semelles adaptées
+				</h1>
+				<p class="lead">
+					Au <strong>Pôle Santé d’Armentières</strong>, nous vous accompagnons avec des soins de pédicurie-podologie
+					strictement encadrés par le diplôme d’État : prévention, soulagement, performance et confort de la marche.
+				</p>
+				<BookLinks variant="hero" />
+				<p class="hero-footnote">
+					Les visites à domicile se réservent <strong>par téléphone</strong> (modalités selon zone — voir le
+					<a href="/plan-acces/">plan d’accès</a>).
+				</p>
+			</div>
+			<div class="hero-stack">
+				<div class="hero-visual">
+					<img
+						class="hero-visual__cabinet"
+						src={cabHero.src}
+						alt={cabHero.alt}
+						width="800"
+						height="600"
+						loading="eager"
+						decoding="async"
+						fetchpriority="high"
+					/>
+					<div class="hero-visual__portrait-wrap">
+						<JulienPortrait priority />
+					</div>
+				</div>
+				<div class="hero-card">
+					<p class="hero-card__title">Semelles orthopédiques sur mesure</p>
+					<p style="margin:0;line-height:1.55;opacity:0.95">
+						Analyse de votre appui, moulage ou numérisation selon les indications, fabrication sur prescription et
+						suivi : nous mettons l’orthèse plantaire au centre de la prise en charge lorsque votre pied le nécessite.
+					</p>
+					<p style="margin:1rem 0 0">
+						<a class="btn btn--primary" href="/mes-services/#semelles">Découvrir le parcours semelles</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="section section--white" aria-labelledby="pourquoi-title">
+		<div class="container">
+			<div class="section-head">
+				<h2 id="pourquoi-title" class="section-title">Pourquoi nous consulter&nbsp;?</h2>
+				<p class="lead">
+					Un cabinet à taille humaine, deux professionnels diplômés d’État, des actes clairs et des explications
+					compréhensibles — sans promesse irréaliste : la podologie est une prise en charge médicale, pas une
+					affaire marketing.
+				</p>
+			</div>
+			<div class="grid-cards cols-3">
+				<article class="card card--accent">
+					<div class="card__icon" aria-hidden="true">
+						<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<path d="M12 3v18M5 12h14M5 5l14 14M19 5L5 19" opacity="0.4"></path>
+							<circle cx="12" cy="12" r="3"></circle>
+						</svg>
+					</div>
+					<h3>Focus semelles</h3>
+					<p class="muted" style="margin:0">
+						Bilan podologique / postural, proposition d’orthèses plantaires adaptées à votre quotidien ou à votre
+						pratique sportive, avec contrôles de rééducation du pied.
+					</p>
+				</article>
+				<article class="card">
+					<div class="card__icon" aria-hidden="true">
+						<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<path d="M4 12h16M8 8v8M12 6v12M16 9v6"></path>
+						</svg>
+					</div>
+					<h3>Sport & posture</h3>
+					<p class="muted" style="margin:0">
+						Podologie du sport, bilans posturaux, thérapie manuelle du pied et de la cheville, K-tape selon
+						indication.
+					</p>
+				</article>
+				<article class="card">
+					<div class="card__icon" aria-hidden="true">
+						<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+						</svg>
+					</div>
+					<h3>Pédicurie soignée</h3>
+					<p class="muted" style="margin:0">
+						Cors, durillons, ongles incarnés, affections de la peau et des ongles : soins dans le respect des règles
+						d’asepsie et de la déontologie.
+					</p>
+				</article>
+			</div>
+		</div>
+	</section>
+
+	<section class="section section--tint" aria-labelledby="semelles-title">
+		<div class="container semelles-panel">
+			<figure class="semelles-figure">
+				<img
+					class="semelles-figure__img"
+					src={cabSemelles.src}
+					alt={cabSemelles.alt}
+					width="800"
+					height="600"
+					loading="lazy"
+					decoding="async"
+				/>
+			</figure>
+			<div>
+				<h2 id="semelles-title" class="section-title">Semelles orthopédiques : précision & suivi</h2>
+				<p class="lead">
+					L’orthèse plantaire n’est pas un produit «&nbsp;standard&nbsp;» : elle découle d’un bilan, d’objectifs
+					thérapeutiques ou fonctionnels et, le cas échéant, d’une prescription adaptée. Nous expliquons les options
+					avant toute décision commune.
+				</p>
+				<ol class="step-list">
+					<li>
+						<strong>Écoute & examen</strong> — histoire de la douleur ou de la gêne, analyse clinique de la marche et
+						de l’appui.
+					</li>
+					<li>
+						<strong>Bilan podologique / postural</strong> — mesures et appui dynamique ou statique selon les besoins.
+					</li>
+					<li>
+						<strong>Conception</strong> — choix des matériaux, zones de décharge et de soutien, chaussant ciblé.
+					</li>
+					<li>
+						<strong>Réévaluation</strong> — ajustements après livraison ; un premier contrôle est généralement prévu
+						dans les mois suivant la pose (selon protocole du cabinet).
+					</li>
+				</ol>
+				<p class="muted" style="margin-top:1rem">
+					Tarifs indicatifs communiqués sur les annuaires de santé (Doctolib, <a href={siteConfig.leMedecinUrl}>lemedecin.fr</a>) : ils
+					varient selon les actes réalisés — le praticien vous informe avant tout dépassement éventuel.
+				</p>
+				<p style="margin-top:1.25rem">
+					<a class="btn btn--primary" href={siteConfig.doctolibUrl} target="_blank" rel="noopener noreferrer">
+						Prendre rendez-vous
+					</a>
+					<a class="btn btn--outline" href="/mes-services/">Tous les services</a>
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="section section--white section--equipe" aria-labelledby="equipe-title">
+		<div class="container">
+			<div class="section-head">
+				<h2 id="equipe-title" class="section-title">
+					Deux pédicures&#x2011;podologues&nbsp;à votre écoute
+				</h2>
+				<p class="lead">
+					<strong>M. Julien Beligat</strong> et <strong>Mme Margot Lecomte</strong>, diplômés d’État, exercent au même
+					étage au sein du <strong>{siteConfig.structure.name}</strong> — {formatStreetLine()},{' '}
+					{siteConfig.structure.country}.
+				</p>
+			</div>
+			<div class="grid-cards grid-cards--equipe">
+				<article class="card card--photo">
+					<div class="card-photo card-photo--portrait">
+						<JulienPortrait />
+					</div>
+					<div class="card-body">
+						<h3>Julien Beligat</h3>
+						<p class="muted" style="margin-top:0">
+							Diplôme d’État (IKPO Lille), DU podologie du sport (Lille-II). Expérience en cabinet à Armentières
+							depuis 2020. Intervenant associatif (abej Solidarité).
+						</p>
+						<p style="margin-bottom:0">
+							<a href="/qui-suis-je/">Parcours & formations</a>
+						</p>
+					</div>
+				</article>
+				<article class="card card--photo">
+					<div class="card-photo">
+						<img
+							src={media.cabinet[2].src}
+							alt={media.cabinet[2].alt}
+							width="640"
+							height="400"
+							loading="lazy"
+							decoding="async"
+						/>
+					</div>
+					<div class="card-body">
+						<h3>Margot Lecomte</h3>
+						<p class="muted" style="margin-top:0">
+							Pédicure-podologue au sein du même cabinet, pour une prise en charge complémentaire et disponibilités
+							élargies pour les patients du secteur.
+						</p>
+						<p style="margin-bottom:0">
+							<a href="/qui-suis-je/">En savoir plus</a>
+						</p>
+					</div>
+				</article>
+			</div>
+		</div>
+	</section>
+
+	<div class="container">
+		<div class="cta-band">
+			<div class="container" style="width:100%;margin:0 auto;padding-inline:1.5rem">
+				<p>Une douleur, une gêne à la marche, un projet sportif ou besoin de semelles&nbsp;?</p>
+				<div class="btn-group">
+					<a class="btn btn--primary" href={siteConfig.doctolibUrl} target="_blank" rel="noopener noreferrer">
+						Réserver sur Doctolib
+					</a>
+					<a class="btn btn--light" href="/plan-acces/">Venir au cabinet</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</SiteLayout>

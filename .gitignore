@@ -2,18 +2,30 @@
 Thumbs.db
 Desktop.ini
 
-# IDE
+# IDE (racine + Astro)
 .idea/
 .vscode/
 *.swp
 *.swo
 
-# PHP
+# PHP (héritage dossier WAMP)
 vendor/
 composer.phar
-.env
 .env.local
 *.log
+
+# Astro — build & deps
+dist/
+.astro/
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Variables d’environnement
+.env
+.env.production
 
 # OS
 .DS_Store

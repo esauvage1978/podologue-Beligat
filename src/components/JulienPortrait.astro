@@ -1,0 +1,24 @@
+---
+import { media } from '../config/media';
+
+interface Props {
+	class?: string;
+	priority?: boolean;
+}
+
+const { class: className, priority = false } = Astro.props;
+const { webp, fallback, alt } = media.julien;
+---
+
+<picture>
+	<source srcset={webp} type="image/webp" />
+	<img
+		src={fallback}
+		alt={alt}
+		class={className}
+		loading={priority ? 'eager' : 'lazy'}
+		decoding="async"
+		fetchpriority={priority ? 'high' : undefined}
+		sizes="(max-width: 600px) 100vw, 320px"
+	/>
+</picture>

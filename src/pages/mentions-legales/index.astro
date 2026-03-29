@@ -1,0 +1,138 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { siteConfig, formatStructureAddress } from '../../config/site';
+
+const pd = siteConfig.practitioners.publicationDirector;
+const assoc = siteConfig.practitioners.associate;
+
+const title = 'Mentions légales';
+const description =
+	'Mentions légales du site du cabinet de podologie — éditeur, hébergement, cadre déontologique.';
+---
+
+<SiteLayout {title} {description} canonicalPath="/mentions-legales/">
+	<section class="section section--white">
+		<div class="container">
+			<div class="page-legal">
+				<h1>Mentions légales</h1>
+
+	<p class="muted">
+		Conformément aux articles 6-III et 19 de la loi n°2004-575 du 21 juin 2004 pour la confiance dans l’économie
+		numérique (LCEN).
+	</p>
+
+	<h2>1. Éditeur du site</h2>
+	<p>
+		Le présent site est édité par <strong>{siteConfig.siteName}</strong>, situé à l’adresse suivante&nbsp;:<br />
+		<strong>{formatStructureAddress()}</strong>.
+	</p>
+	<p>
+		<strong>Praticiens exerçant au sein de l’établissement</strong> (pédicures-podologues, diplôme d’État)&nbsp;:
+	</p>
+	<ul>
+		<li>
+			<strong>{pd.civility} {pd.firstName} {pd.lastName}</strong> — {pd.title}. Numéro RPPS&nbsp;: {pd.rpps}.
+		</li>
+		<li>
+			<strong
+				>{assoc.firstName} {assoc.lastName}</strong
+			> — {assoc.title}.
+			{assoc.rpps
+			? ` Numéro RPPS : ${assoc.rpps}.`
+			: ' (identifiant RPPS : non communiqué sur ce site ; disponible sur demande ou via l’annuaire santé).'}
+		</li>
+	</ul>
+
+	<h2>2. Directeur de la publication</h2>
+	<p>
+		Le directeur de la publication est <strong>{pd.civility} {pd.firstName} {pd.lastName}</strong>, {pd.title},
+		exerçant au sein du cabinet susmentionné.
+	</p>
+
+	<h2>3. Contact</h2>
+	<p>
+		Pour toute question relative au site (hors urgence médicale)&nbsp;: <a href={`mailto:${siteConfig.contactEmail}`}
+			>{siteConfig.contactEmail}</a
+		>.
+		<span class="muted">
+			(Adresse e-mail indicative — à remplacer dans <code>src/config/site.ts</code> par l’adresse réelle du
+			cabinet.)
+		</span>
+	</p>
+	<p class="muted">
+		En cas d’urgence vitale, composez le <strong>15</strong> (SAMU) ou le <strong>112</strong>.
+	</p>
+
+	<h2>4. Hébergement</h2>
+	<p>
+		Le site est hébergé par <strong>{siteConfig.hosting.name}</strong>, {siteConfig.hosting.address}.
+		{siteConfig.hosting.phone ? ` Téléphone : ${siteConfig.hosting.phone}.` : ''}
+	</p>
+	<p class="muted">
+		À compléter impérativement avec le nom, l’adresse et le téléphone de votre hébergeur (obligation légale).
+	</p>
+
+	<h2>5. Conception du site</h2>
+	<p>
+		La conception et le développement technique du présent site ont été réalisés par{' '}
+		<strong>Emmanuel SAUVAGE</strong> —{' '}
+		<a href="https://emmanuelsauvage.fr" rel="noopener noreferrer">emmanuelsauvage.fr</a>.
+	</p>
+
+	<h2>6. Propriété intellectuelle</h2>
+	<p>
+		L’ensemble des éléments du site (textes, structure, visuels lorsqu’ils sont présents) sont la propriété du
+		cabinet ou font l’objet d’une autorisation d’utilisation. Toute reproduction non autorisée est interdite sauf
+		citation brève avec lien vers la page source.
+	</p>
+
+	<h2>7. Cadre déontologique et professionnel</h2>
+	<div class="encart">
+		<p>
+			La profession de pédicure-podologue est réglementée. La communication au public doit rester <strong
+				>loyale, honnête</strong
+			> et ne pas induire en erreur, notamment en application du Code de la santé publique et du <strong
+				>Code de déontologie des pédicures-podologues</strong
+			> (notamment l’article&nbsp;39&nbsp;: la profession ne doit pas être pratiquée comme un commerce).
+		</p>
+		<p>
+			L’<a href="https://www.onpp.fr/communication/actualites/actualites-ordinales/charte-internet.html"
+				>Ordre national des pédicures-podologues (ONPP)</a
+			> a publié une <strong>charte éthique et déontologique</strong> applicable aux sites internet des
+			pédicures-podologues. Tout site à titre professionnel doit être porté à la connaissance du <strong
+				>conseil régional de l’Ordre</strong
+			> dont vous relevez ; une soumission préalable est <strong>fortement recommandée</strong> avant mise en ligne
+			ou en cas de modifications importantes.
+		</p>
+		<p>
+			Les <a
+				href="https://www.onpp.fr/deontologie/recommandations-deontologiques/information-et-communication-des-pedicures-podologues-au-public.html"
+				>recommandations relatives à l’information et à la communication des pédicures-podologues au public</a
+			> précisent les principes applicables (absence de publicité comparative, de témoignages de tiers, d’incitation
+			au recours inutile aux soins, respect de la dignité de la profession, etc.).
+		</p>
+	</div>
+	<p>
+		Le présent site a pour vocation de fournir une <strong>information factuelle</strong> sur l’activité du cabinet
+		(parcours des praticiens, moyens de contact, orientations vers la prise de rendez-vous). Il ne constitue pas une
+		offre commerciale au sens du droit de la consommation et ne remplace pas une consultation.
+	</p>
+
+	<h2>8. Lien externe (prise de rendez-vous)</h2>
+	<p>
+		Un lien peut renvoyer vers la plateforme <strong>Doctolib</strong> à des fins pratiques de prise de rendez-vous&nbsp;:
+		<a href={siteConfig.doctolibUrl} rel="noopener noreferrer">{siteConfig.doctolibUrl}</a>. Le cabinet n’est pas
+		responsable du contenu ou du fonctionnement de ce service tiers ; la politique de confidentialité de la
+		plateforme s’applique lors de son utilisation.
+	</p>
+
+	<h2>9. Limitation de responsabilité</h2>
+	<p>
+		Les informations publiées le sont en l’état de la réglementation et des connaissances à la date de rédaction. Malgré
+		le soin apporté, des erreurs ou omissions peuvent subsister ; le cabinet s’efforcera d’y remédier lorsqu’elles
+		seront signalées.
+	</p>
+			</div>
+		</div>
+	</section>
+</SiteLayout>

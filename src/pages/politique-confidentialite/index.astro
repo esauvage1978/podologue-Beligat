@@ -1,0 +1,134 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { siteConfig, formatStructureAddress } from '../../config/site';
+
+const title = 'Politique de confidentialité';
+const description =
+	'Traitement des données personnelles — RGPD, secret professionnel, droits des personnes.';
+---
+
+<SiteLayout {title} {description} canonicalPath="/politique-confidentialite/">
+	<section class="section section--white">
+		<div class="container">
+			<div class="page-legal">
+				<h1>Politique de confidentialité</h1>
+
+	<p class="muted">Dernière mise à jour : mars 2026 (à adapter à chaque évolution substantielle).</p>
+
+	<h2>1. Qui est responsable du traitement&nbsp;?</h2>
+	<p>
+		Les traitements de données mis en œuvre via ce site sont sous la responsabilité des <strong
+			>pédicures-podologues</strong
+		> exerçant au sein du <strong>{siteConfig.siteName}</strong>, {formatStructureAddress()}.
+	</p>
+	<p>
+		Interlocuteur privilégié pour les questions relatives aux données personnelles (hors exercice du secret
+		professionnel sur le fond des soins)&nbsp;: <a href={`mailto:${siteConfig.contactEmail}`}
+			>{siteConfig.contactEmail}</a
+		>
+		<span class="muted">(à remplacer par l’adresse réelle du cabinet dans <code>src/config/site.ts</code>).</span>
+	</p>
+
+	<h2>2. Secret professionnel</h2>
+	<div class="encart">
+		<p>
+			En tant que professionnels de santé, les pédicures-podologues sont tenus au <strong
+				>secret professionnel</strong
+			> (articles L. 1110-4 et suivants du Code de la santé publique). Les informations relatives à l’état de santé
+			que vous seriez amené à communiquer par courriel ou formulaire bénéficient de ce cadre strict.
+		</p>
+	</div>
+
+	<h2>3. Quelles données sont concernées&nbsp;?</h2>
+	<p>Selon votre utilisation du site, peuvent être traitées notamment&nbsp;:</p>
+	<ul>
+		<li>
+			<strong>Données de navigation techniques</strong> (logs côté hébergeur, adresse IP, horodatage, navigateur) dans
+			la mesure où l’hébergeur ou l’outil de sécurité les conserve — voir aussi la page <a href="/gestion-cookies/"
+				>Cookies</a
+			>.
+		</li>
+		<li>
+			<strong>Données que vous nous transmettez volontairement</strong> (nom, coordonnées, motif de contact) si un
+			formulaire ou une adresse e-mail est proposé.
+		</li>
+		<li>
+			<strong>Données de santé</strong> uniquement si vous choisissez d’en faire état dans votre message : elles sont
+			alors traitées dans le cadre de la gestion de votre demande et du secret professionnel.
+		</li>
+	</ul>
+
+	<h2>4. Finalités et bases légales (RGPD)</h2>
+	<ul>
+		<li>
+			<strong>Répondre aux sollicitations</strong> (prise de contact, demandes d’information)&nbsp;: intérêt légitime du
+			cabinet ou, le cas échéant, mesures précontractuelles / exécution de mesures prises à votre demande.
+		</li>
+		<li>
+			<strong>Gestion administrative et obligations légales</strong> (comptabilité, conservation de preuves en cas de
+			litige lorsque applicable).
+		</li>
+		<li>
+			<strong>Données de santé</strong> (si vous en communiquez)&nbsp;: soins ou gestion de la relation de soins /
+			accompagnement vers un rendez-vous, conformément au Code de la santé publique et au RGPD (article&nbsp;9).
+		</li>
+	</ul>
+	<p>
+		Le site ne vend ni ne loue vos données. Aucune <strong>publicité ciblée</strong> ni profilage marketing n’est
+		réalisé dans la version actuelle du site, conformément aux exigences déontologiques de la profession (<a
+			href="https://www.onpp.fr/deontologie/recommandations-deontologiques/information-et-communication-des-pedicures-podologues-au-public.html"
+			>recommandations ONPP</a
+		>).
+	</p>
+
+	<h2>5. Destinataires</h2>
+	<p>
+		Les données sont destinées aux seuls <strong>professionnels du cabinet</strong> et, le cas échéant, à nos
+		sous-traitants strictement nécessaires (hébergeur, prestataire technique lié au site ou à la messagerie), dans le
+		respect du RGPD et, pour les données de santé, des règles applicables aux hébergeurs de données de santé lorsque
+		c’est requis.
+	</p>
+	<p>
+		Si vous utilisez <strong>Doctolib</strong> pour prendre rendez-vous, les données saisies sur cette plateforme sont
+		traitées par Doctolib selon sa propre politique&nbsp;: <a href={siteConfig.doctolibUrl} rel="noopener noreferrer"
+			>page du praticien</a
+		>.
+	</p>
+
+	<h2>6. Durées de conservation (indicatif)</h2>
+	<ul>
+		<li>Courriels / demandes de contact non liés au dossier patient&nbsp;: durée nécessaire au traitement, puis archivage
+			éventuel limité en cas d’obligation légale.</li>
+		<li>Données de santé dans le cadre des soins&nbsp;: selon les durées légales applicables au dossier patient.</li>
+		<li>Logs techniques hébergeur&nbsp;: selon la politique du prestataire (souvent quelques semaines à quelques mois).</li>
+	</ul>
+
+	<h2>7. Vos droits</h2>
+	<p>
+		Vous disposez d’un droit d’<strong>accès</strong>, de <strong>rectification</strong>, d’<strong>effacement</strong> (dans
+		les limites légales), de <strong>limitation</strong>, d’<strong>opposition</strong> et de <strong
+			>portabilité</strong
+		> lorsque le RGPD l’impose. Pour les données de santé, certaines demandes peuvent devoir être examinées au regard du
+		secret professionnel et des obligations de conservation.
+	</p>
+	<p>
+		Vous pouvez introduire une réclamation auprès de la <a href="https://www.cnil.fr/">CNIL</a> (Commission nationale de
+		l’informatique et des libertés).
+	</p>
+
+	<h2>8. Transferts hors Union européenne</h2>
+	<p>
+		Sauf mention contraire ultérieure, les traitements mis en œuvre visent à utiliser des prestataires situés dans
+		l’UE ou offrant des garanties conformes au RGPD. Toute évolution sera reflétée dans cette politique.
+	</p>
+
+	<h2>9. Évolution</h2>
+	<p>
+		Cette politique peut être mise à jour lors de l’ajout de nouveaux outils (formulaire, agenda en ligne intégré,
+		mesure d’audience, etc.). Les principes déontologiques du <a href="https://www.onpp.fr/">ONPP</a> et le respect du
+		secret professionnel restent prioritaires.
+	</p>
+			</div>
+		</div>
+	</section>
+</SiteLayout>

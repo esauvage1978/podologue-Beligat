@@ -1,0 +1,22 @@
+---
+import { siteConfig } from '../config/site';
+
+const tel = siteConfig.phone?.trim();
+---
+
+<div class="float-cta" role="region" aria-label="Prise de rendez-vous rapide">
+	<a class="btn btn--primary" href={siteConfig.doctolibUrl} target="_blank" rel="noopener noreferrer">
+		Rendez-vous en ligne
+	</a>
+	{
+		tel ? (
+			<a class="btn btn--outline" href={`tel:${tel.replace(/\s/g, '')}`} style="border-color:var(--color-primary);color:var(--color-primary);background:#fff">
+				Appeler
+			</a>
+		) : (
+			<a class="btn btn--outline" href="/plan-acces/#contact" style="border-color:var(--color-primary);color:var(--color-primary);background:#fff">
+				Accès & contact
+			</a>
+		)
+	}
+</div>

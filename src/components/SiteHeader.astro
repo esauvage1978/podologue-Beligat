@@ -1,0 +1,81 @@
+---
+import { siteConfig } from '../config/site';
+import BookLinks from './BookLinks.astro';
+
+const pathname = Astro.url.pathname;
+const nav = [
+	{ href: '/', label: 'Accueil' },
+	{ href: '/qui-suis-je/', label: 'Qui sommes-nous' },
+	{ href: '/mes-services/', label: 'Mes services' },
+	{ href: '/plan-acces/', label: 'Plan d’accès' },
+];
+
+function isCurrent(href: string) {
+	if (href === '/') return pathname === '/' || pathname === '/index.html';
+	return pathname === href || pathname.startsWith(href);
+}
+---
+
+<header class="site-header">
+	<div class="container site-header__inner">
+		<a class="site-logo" href="/">{siteConfig.brandName}<span>.</span></a>
+
+		<nav class="site-nav" aria-label="Navigation principale">
+			{
+				nav.map((item) => (
+					<a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
+						{item.label}
+					</a>
+				))
+			}
+		</nav>
+
+		<div class="header-cta">
+			<a class="btn btn--primary" href={siteConfig.doctolibUrl} target="_blank" rel="noopener noreferrer">
+				Rendez-vous
+			</a>
+		</div>
+
+		<button
+			type="button"
+			class="nav-toggle"
+			id="nav-toggle"
+			aria-expanded="false"
+			aria-controls="mobile-drawer"
+		>
+			Menu
+		</button>
+	</div>
+
+	<div class="mobile-drawer" id="mobile-drawer" hidden aria-label="Menu mobile">
+		{
+			nav.map((item) => (
+				<a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
+					{item.label}
+				</a>
+			))
+		}
+		<a class="btn btn--primary" style="text-align:center;margin-top:0.5rem" href={siteConfig.doctolibUrl} target="_blank" rel="noopener noreferrer">
+			Prendre rendez-vous
+		</a>
+	</div>
+</header>
+
+<script>
+	const toggle = document.getElementById('nav-toggle');
+	const drawer = document.getElementById('mobile-drawer');
+	if (toggle && drawer) {
+		toggle.addEventListener('click', () => {
+			const open = drawer.classList.toggle('is-open');
+			drawer.hidden = !open;
+			toggle.setAttribute('aria-expanded', String(open));
+		});
+		drawer.querySelectorAll('a').forEach((a) => {
+			a.addEventListener('click', () => {
+				drawer.classList.remove('is-open');
+				drawer.hidden = true;
+				toggle.setAttribute('aria-expanded', 'false');
+			});
+		});
+	}
+</script>

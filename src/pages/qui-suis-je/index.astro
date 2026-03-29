@@ -1,0 +1,134 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import JulienPortrait from '../../components/JulienPortrait.astro';
+import { siteConfig, formatStructureAddress } from '../../config/site';
+import { media } from '../../config/media';
+
+const title = 'Qui sommes-nous — pédicures-podologues à Armentières';
+const description =
+	'Julien Beligat et Margot Lecomte, pédicures-podologues au Pôle Santé d’Armentières : parcours, formations et valeurs d’un cabinet axé bilan podologique et semelles sur mesure.';
+---
+
+<SiteLayout {title} {description} canonicalPath="/qui-suis-je/">
+	<section class="hero-mesh" style="padding:clamp(2.5rem,6vw,4rem) 0">
+		<div class="container">
+			<h1 class="display" style="margin:0 0 0.75rem">Qui sommes-nous&nbsp;?</h1>
+			<p class="lead" style="max-width:40rem">
+				Nous sommes <strong>pédicures-podologues</strong>, titulaires du <strong>diplôme d’État</strong>, et exerçons au
+				sein du <strong>{siteConfig.structure.name}</strong> à Armentières. Notre communication reste factuelle et
+				loyale, conformément au Code de déontologie et aux recommandations de l’Ordre.
+			</p>
+			<div class="btn-group" style="margin-top:1.5rem">
+				<a class="btn btn--primary" href={siteConfig.doctolibUrl} target="_blank" rel="noopener noreferrer">
+					Prendre rendez-vous
+				</a>
+				<a class="btn btn--light" href="/mes-services/">Nos actes</a>
+			</div>
+		</div>
+	</section>
+
+	<section class="section section--white prose-page">
+		<div class="container">
+			<div class="grid-cards" style="margin-bottom:2.5rem">
+				<article class="card card--accent card--photo">
+					<div class="card-photo card-photo--portrait">
+						<JulienPortrait />
+					</div>
+					<div class="card-body">
+						<h2
+							style="margin-top:0;font-family:var(--font-display);font-size:1.45rem;color:var(--color-primary-dark)"
+						>
+							M. Julien Beligat
+						</h2>
+						<p class="muted" style="margin-top:0">Pédicure-podologue — directeur de la publication du site.</p>
+						<p>
+							Julien vous reçoit au cabinet pour des <strong>bilans podologiques et posturaux</strong>, la
+							<strong>confection de semelles orthopédiques sur mesure</strong>, la <strong>podologie du sport</strong>,
+							la <strong>pédicurie</strong> et des prises en charge manuelles lorsque c’est indiqué. Il a exercé à
+							Épinal avant de s’installer à <strong>Armentières en 2020</strong>.
+						</p>
+						<p class="muted" style="font-size:0.9rem">
+							RPPS (annuaire santé)&nbsp;: {siteConfig.practitioners.publicationDirector.rpps}
+						</p>
+						<p style="margin-bottom:0">
+							<a href={siteConfig.doctolibUrl} target="_blank" rel="noopener noreferrer">Profil Doctolib</a>
+							&nbsp;·&nbsp;
+							<a href={siteConfig.leMedecinUrl} target="_blank" rel="noopener noreferrer">Fiche lemedecin.fr</a>
+						</p>
+					</div>
+				</article>
+				<article class="card card--photo">
+					<div class="card-photo">
+						<img
+							src={media.cabinet[3].src}
+							alt={media.cabinet[3].alt}
+							width="640"
+							height="400"
+							loading="lazy"
+							decoding="async"
+						/>
+					</div>
+					<div class="card-body">
+						<h2
+							style="margin-top:0;font-family:var(--font-display);font-size:1.45rem;color:var(--color-primary-dark)"
+						>
+							Mme Margot Lecomte
+						</h2>
+						<p class="muted" style="margin-top:0">Pédicure-podologue — même cabinet, même exigence de soins.</p>
+						<p>
+							Margot exerce à vos côtés pour élargir les créneaux disponibles et assurer une continuité de prise en
+							charge au sein de la structure. Les actes proposés s’inscrivent dans le même cadre déontologique et
+							réglementaire que pour tout pédicure-podologue.
+						</p>
+						<p style="margin-bottom:0">
+							<a href={siteConfig.doctolibUrl} target="_blank" rel="noopener noreferrer">Rendez-vous via Doctolib</a>
+						</p>
+					</div>
+				</article>
+			</div>
+
+			<h2>Formations & compétences (indicatif)</h2>
+			<p class="muted">
+				Liste issue des informations publiques disponibles sur les annuaires de santé — elle évolue avec les
+				formations continues.
+			</p>
+			<ul>
+				<li>Diplôme d’État de pédicure-podologue — IKPO Lille (2018)</li>
+				<li>DU Podologie du sport — Université Lille-II (2023)</li>
+				<li>Formations continues : posturologie, ILMI, thérapie manuelle pied-cheville, bilan du sportif, podopédiatrie, etc.</li>
+			</ul>
+
+			<h2>Engagement associatif</h2>
+			<p>
+				Julien Beligat intervient au sein de l’association <strong>abej Solidarité</strong>, en cohérence avec
+				l’engagement social possible de la profession.
+			</p>
+
+			<h2>Le cabinet en images</h2>
+			<div class="photo-grid" style="margin-bottom:2rem">
+				{
+					media.cabinet.map((item) => (
+						<figure>
+							<a href="/plan-acces/">
+								<img src={item.src} alt={item.alt} width="400" height="400" loading="lazy" decoding="async" />
+							</a>
+							<figcaption>{item.alt}</figcaption>
+						</figure>
+					))
+				}
+			</div>
+
+			<h2>Cabinet</h2>
+			<p>
+				<strong>{formatStructureAddress()}</strong> — 2<sup>e</sup> étage avec <strong>ascenseur</strong> et
+				<strong>parcours PMR</strong> pour faciliter l’accès au plateau technique.
+			</p>
+			<p style="margin-top:1.5rem">
+				<a class="btn btn--primary" href={siteConfig.doctolibUrl} target="_blank" rel="noopener noreferrer">
+					Réserver un créneau
+				</a>
+				<a class="btn btn--outline" href="/plan-acces/">Plan d’accès</a>
+			</p>
+		</div>
+	</section>
+</SiteLayout>

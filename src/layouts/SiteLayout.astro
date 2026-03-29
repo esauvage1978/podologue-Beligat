@@ -1,0 +1,110 @@
+---
+import '../styles/global.css';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import FloatingCTA from '../components/FloatingCTA.astro';
+import { siteConfig } from '../config/site';
+
+interface Props {
+	title: string;
+	description?: string;
+	/** Chemin sans domaine, ex. /mes-services/ */
+	canonicalPath?: string;
+	noIndex?: boolean;
+}
+
+const { title, description = siteConfig.seo.defaultDescription, canonicalPath, noIndex = false } = Astro.props;
+
+const siteOrigin = (Astro.site ?? new URL(siteConfig.siteUrl)).origin;
+const canonical = new URL(canonicalPath ?? Astro.url.pathname, Astro.site ?? siteConfig.siteUrl).href;
+const cabinetId = `${siteOrigin}/#cabinet`;
+
+const pd = siteConfig.practitioners.publicationDirector;
+const assoc = siteConfig.practitioners.associate;
+
+const jsonLd = {
+	'@context': 'https://schema.org',
+	'@graph': [
+		{
+			'@type': 'MedicalClinic',
+			'@id': cabinetId,
+			name: siteConfig.siteName,
+			url: siteOrigin + '/',
+			description: siteConfig.seo.defaultDescription,
+			address: {
+				'@type': 'PostalAddress',
+				streetAddress: siteConfig.structure.street,
+				postalCode: siteConfig.structure.postalCode,
+				addressLocality: siteConfig.structure.city,
+				addressCountry: 'FR',
+			},
+			geo: {
+				'@type': 'GeoCoordinates',
+				latitude: siteConfig.geo.lat,
+				longitude: siteConfig.geo.lng,
+			},
+			medicalSpecialty: ['Podiatric'],
+			sameAs: [siteConfig.doctolibUrl, siteConfig.leMedecinUrl],
+		},
+		{
+			'@type': 'Physician',
+			'@id': `${siteOrigin}/#beligat`,
+			name: `${pd.firstName} ${pd.lastName}`,
+			jobTitle: pd.title,
+			identifier: { '@type': 'PropertyValue', name: 'RPPS', value: pd.rpps },
+			worksFor: { '@id': cabinetId },
+			sameAs: siteConfig.doctolibUrl,
+		},
+		{
+			'@type': 'Physician',
+			'@id': `${siteOrigin}/#lecomte`,
+			name: `${assoc.firstName} ${assoc.lastName}`,
+			jobTitle: assoc.title,
+			worksFor: { '@id': cabinetId },
+		},
+	],
+};
+
+const fullTitle = `${title} | ${siteConfig.brandName}`;
+---
+
+<!doctype html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>{fullTitle}</title>
+		<meta name="description" content={description} />
+		<meta name="keywords" content={siteConfig.seo.keywords.join(', ')} />
+		<link rel="canonical" href={canonical} />
+		{noIndex && <meta name="robots" content="noindex, nofollow" />}
+		<meta property="og:type" content="website" />
+		<meta property="og:locale" content="fr_FR" />
+		<meta property="og:title" content={fullTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonical} />
+		<meta property="og:site_name" content={siteConfig.brandName} />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={fullTitle} />
+		<meta name="twitter:description" content={description} />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+			rel="stylesheet"
+		/>
+		<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+		<meta name="generator" content={Astro.generator} />
+		<slot name="head" />
+	</head>
+	<body class="has-float-cta">
+		<a class="skip-link" href="#contenu">Aller au contenu</a>
+		<SiteHeader />
+		<main id="contenu">
+			<slot />
+		</main>
+		<SiteFooter />
+		<FloatingCTA />
+	</body>
+</html>
